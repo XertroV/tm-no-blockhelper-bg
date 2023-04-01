@@ -7,16 +7,17 @@ void CMapLoop() {
     auto net = app.Network;
     while (true) {
         yield();
-        while (!ShowWindow) yield();
         while (net.ClientManiaAppPlayground is null) yield();
         AwaitGetMLObjs();
         while (net.ClientManiaAppPlayground !is null) yield();
         @HelperFrame = null;
+        count = 0;
     }
 }
 
 
 CGameManialinkFrame@ HelperFrame = null;
+uint count = 0;
 
 void AwaitGetMLObjs() {
     print('AwaitGetMLObjs');
@@ -39,7 +40,6 @@ void AwaitGetMLObjs() {
     startnew(UpdateHelperFrameBg);
 }
 
-uint count = 0;
 void UpdateHelperFrameBg() {
     print('updating');
     if (HelperFrame is null) throw('unexpected null HelperFrame');
