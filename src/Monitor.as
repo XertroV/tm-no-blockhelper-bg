@@ -39,14 +39,13 @@ void AwaitGetMLObjs() {
         count++;
         if (count > 50) {
             warn("Could not find block helper frame");
-            break;
+            return;
         }
     }
     startnew(UpdateHelperFrameBg);
 }
 
 void UpdateHelperFrameBg() {
-    print('updating');
     if (HelperFrame is null) throw('unexpected null HelperFrame');
     if (HelperFrame.Controls.Length < 2) throw('helper frame controls < 2');
     auto label = HelperFrame.Controls[0];
