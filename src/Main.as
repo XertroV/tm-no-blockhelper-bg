@@ -5,7 +5,8 @@ void Main() {
 void OnDestroyed() { Unload(); }
 void OnDisabled() { Unload(); }
 void Unload() {
-    // nothing to do yet
+    auto app = GetApp();
+    if (app is null || app.CurrentPlayground is null) @HelperFrame = null;
     if (HelperFrame is null) return;
     auto frameBg = cast<CGameManialinkFrame>(HelperFrame.Controls[1]);
     if (frameBg is null) return;

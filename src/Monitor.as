@@ -2,6 +2,8 @@ const string HelperPageName = "UIModule_Race_BlockHelper";
 const string HelperFrameId = "Race_BlockHelper";
 const string EventName = "BlockHelper_Event_GameplaySpecial";
 
+const string DisplayMsgLabelId = "Race_DisplayMessage";
+
 void CMapLoop() {
     auto app = cast<CGameManiaPlanet>(GetApp());
     auto net = app.Network;
@@ -24,10 +26,12 @@ void AwaitGetMLObjs() {
     auto net = cast<CTrackManiaNetwork>(GetApp().Network);
     if (net.ClientManiaAppPlayground is null) throw('null cmap');
     auto cmap = net.ClientManiaAppPlayground;
-    while (cmap.UILayers.Length < 7) yield();
+    while (net.ClientManiaAppPlayground !is null && cmap.UILayers.Length < 7) yield();
+    if (net.ClientManiaAppPlayground is null) return;
     count = 0;
     while (HelperFrame is null) {
         sleep(100);
+        if (net.ClientManiaAppPlayground is null) return;
         for (uint i = 0; i < cmap.UILayers.Length; i++) {
             auto layer = cmap.UILayers[i];
             if (!layer.IsLocalPageScriptRunning || !layer.IsVisible || layer.LocalPage is null) continue;
