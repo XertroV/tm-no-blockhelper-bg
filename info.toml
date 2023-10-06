@@ -2,7 +2,7 @@
 name     = "No BlockHelper Background"
 author   = "XertroV"
 category = "Utilities"
-version  = "0.1.1"
+version  = "0.2.0"
 siteid   = 356
 
 [script]
